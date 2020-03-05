@@ -23,9 +23,9 @@
                     <td>@{{category.name}}</td>
                     <td>@{{category.image}}</td>
                     <td width="10px">
-                        <a href="" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="" class="btn btn-warning btn-sm" v-on:click.prevent="editCategory(category)">Editar</a>
                     </td>
-                    <td width="10px">
+                    <td width=" 10px">
                         <a href="" class="btn btn-danger btn-sm"
                             v-on:click.prevent="deleteCategory(category)">Eliminar</a>
                     </td>
@@ -33,6 +33,7 @@
             </tbody>
         </table>
         @include('../categories/create')
+        @include('../categories/edit')
     </div>
 </div>
 @endsection

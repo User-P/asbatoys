@@ -6,6 +6,7 @@ new Vue({
     data: {
         categories: [],
         nameCategory: "",
+        fillCategory: { id: "", name: "" },
         errors: []
     },
     methods: {
@@ -15,11 +16,31 @@ new Vue({
                 this.categories = response.data;
             });
         },
+        editCategory: function(category) {
+            this.fillCategory.id = category.id;
+            this.fillCategory.name = category.name;
+            $("#edit").modal("show");
+        },
+        updateCategory: function(id) {
+            var url = "categories/" + id;
+            axios
+                .put(url, this.fillCategory)
+                .then(response => {
+                    this.getCategories();
+                    this.fillCategory = { id: "", name: "" };
+                    this.errors = [];
+                    $("#edit").modal("hide");
+                    toastr.success("Categoria Actualizada con exito");
+                })
+                .catch(error => {
+                    this.errors = error.response.data;
+                });
+        },
         deleteCategory: function(category) {
             var url = "categories/" + category.id;
             axios.delete(url).then(response => {
-                alert("registro eliminado");
                 this.getCategories();
+                toastr.success("Eliminado correctamente");
             });
         },
         createCategory: function() {
@@ -31,8 +52,9 @@ new Vue({
                 .then(response => {
                     this.getCategories();
                     this.nameCategory = " ";
-                    $("#create").modal("hide");
                     this.errors = [];
+                    $("#create").modal("hide");
+                    toastr.success("Nueva categoria agregada.");
                 })
                 .catch(error => {
                     this.errors = error.response.data;

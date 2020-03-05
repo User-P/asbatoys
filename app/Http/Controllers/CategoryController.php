@@ -19,16 +19,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,21 +31,9 @@ class CategoryController extends Controller
         ]);
         $category = new Category;
         $category->name = $request->name;
+        $category->image = $request->image;
         $category->save();
         return;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        return "hola";
-        $cat = Category::findOrFail($this);
-        return $cat;
     }
 
     /**
@@ -67,7 +45,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        // $this->validate($request, [
+        //     'name' => 'required'
+        // ]);
+        $category->update($request->all());
+        return;
     }
 
     /**
