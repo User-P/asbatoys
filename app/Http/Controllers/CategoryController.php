@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::Orderby('id', 'desc')->get();
         return $categories;
     }
 
@@ -36,18 +36,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+        return;
     }
 
     /**
@@ -83,7 +78,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category = Category::findOrFail($this);
         $category->delete();
     }
 }

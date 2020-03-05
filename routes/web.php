@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+Route::get('/categorias', function () {
+    return view('categories/index');
 });
 
 Route::resource('categories', 'CategoryController');

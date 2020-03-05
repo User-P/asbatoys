@@ -13,9 +13,11 @@ const mix = require("laravel-mix");
 
 mix.scripts(
     [
-        "resources/js/assets/vue.js",
-        "resources/js/assets/axios.js",
-        "resources/js/assets/app.js"
+        "resources/assets/js/jquery-3.4.1",
+        "resources/assets/js/bootstrap.js",
+        "resources/assets/js/vue.js",
+        "resources/assets/js/axios.js",
+        "resources/assets/js/app.js"
     ],
     "public/js/app.js"
-);
+).styles(["resources/assets/css/bootstrap.css"], "public/css/app.css");
