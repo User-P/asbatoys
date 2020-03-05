@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.scripts(
+    [
+        "resources/js/assets/vue.js",
+        "resources/js/assets/axios.js",
+        "resources/js/assets/app.js"
+    ],
+    "public/js/app.js"
+);
