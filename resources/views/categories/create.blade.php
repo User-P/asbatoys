@@ -11,6 +11,8 @@
                 <div class="modal-body">
                     <label for="name">Nombre</label>
                     <input type="text" name="name" class="form-control" v-model="nameCategory">
+                    <label for="image">Imagen</label>
+                    <input type="text" name="image" class="form-control" v-model="imageCategory">
                     <span v-for="error in errors" class="text-danger">@{{error}}</span>
                 </div>
                 <div class="modal-footer">

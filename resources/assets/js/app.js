@@ -6,8 +6,10 @@ new Vue({
     data: {
         categories: [],
         nameCategory: "",
-        fillCategory: { id: "", name: "" },
-        errors: []
+        imageCategory: "",
+        fillCategory: { id: "", name: "", image: "" },
+        errors: [],
+        imagen: ""
     },
     methods: {
         getCategories: function() {
@@ -19,6 +21,7 @@ new Vue({
         editCategory: function(category) {
             this.fillCategory.id = category.id;
             this.fillCategory.name = category.name;
+            this.fillCategory.image = category.image;
             $("#edit").modal("show");
         },
         updateCategory: function(id) {
@@ -27,7 +30,7 @@ new Vue({
                 .put(url, this.fillCategory)
                 .then(response => {
                     this.getCategories();
-                    this.fillCategory = { id: "", name: "" };
+                    this.fillCategory = { id: "", name: "", image: "" };
                     this.errors = [];
                     $("#edit").modal("hide");
                     toastr.success("Categoria Actualizada con exito");
@@ -47,11 +50,13 @@ new Vue({
             var url = "categories";
             axios
                 .post(url, {
-                    name: this.nameCategory
+                    name: this.nameCategory,
+                    image: this.imageCategory
                 })
                 .then(response => {
                     this.getCategories();
                     this.nameCategory = " ";
+                    this.imageCategory = " ";
                     this.errors = [];
                     $("#create").modal("hide");
                     toastr.success("Nueva categoria agregada.");

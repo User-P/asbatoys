@@ -21,7 +21,10 @@
             <tbody>
                 <tr v-for="category in categories">
                     <td>@{{category.name}}</td>
-                    <td>@{{category.image}}</td>
+                    <td>
+                        <img src="https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
+                            width="100px" height="100px">
+                    </td>
                     <td width="10px">
                         <a href="" class="btn btn-warning btn-sm" v-on:click.prevent="editCategory(category)">Editar</a>
                     </td>
